@@ -1,36 +1,130 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Smart Bookmark App
 
-## Getting Started
+Live URL: https://smart-bookmark-app-eta-six.vercel.app  
+GitHub Repo: https://github.com/KK9293717/smart-bookmark-app  
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Project Overview
+
+Smart Bookmark App is a simple bookmark manager where users can sign in using Google and manage their personal bookmarks. Each user's bookmarks are private and update in real time.
+
+---
+
+## Features
+
+- Google Sign In using Supabase Authentication
+- Add bookmarks (Title + URL)
+- Delete bookmarks
+- Bookmarks are private per user
+- Real-time updates using Supabase Realtime
+- Fully deployed on Vercel
+
+---
+
+## Tech Stack
+
+- Next.js (App Router)
+- Supabase (Authentication, Database, Realtime)
+- Tailwind CSS
+- Vercel (Deployment)
+
+---
+
+## Challenges Faced and How I Solved Them
+
+### 1. OAuth redirecting to localhost instead of Vercel
+
+**Problem:**  
+After deployment, Google login redirected to localhost instead of the live URL.
+
+**Solution:**  
+Updated Supabase settings:
+
+Authentication → URL Configuration
+
+Set:
+
+Site URL:
+```
+https://smart-bookmark-app-eta-six.vercel.app
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Added Redirect URLs:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+https://smart-bookmark-app-eta-six.vercel.app
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+### 2. Environment variables not working after deployment
 
-To learn more about Next.js, take a look at the following resources:
+**Problem:**  
+Supabase authentication failed in production.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Solution:**  
+Added environment variables in Vercel:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+NEXT_PUBLIC_SUPABASE_URL
+NEXT_PUBLIC_SUPABASE_ANON_KEY
+```
 
-## Deploy on Vercel
+Then redeployed the project.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+### 3. Multiple Vercel URLs confusion
+
+**Problem:**  
+Vercel generated multiple deployment URLs.
+
+**Solution:**  
+Used the stable production URL:
+
+```
+https://smart-bookmark-app-eta-six.vercel.app
+```
+
+Preview URLs are temporary and not required to share.
+
+---
+
+### 4. Supabase connection errors
+
+**Problem:**  
+Supabase authentication initially failed due to incorrect URL configuration.
+
+**Solution:**  
+Copied correct Supabase Project URL and API keys from Supabase Dashboard and configured them properly.
+
+---
+
+## What I Learned
+
+- OAuth authentication with Supabase
+- Next.js deployment on Vercel
+- Environment variable management
+- Production debugging
+- Full-stack deployment workflow
+
+---
+
+## How to Run Locally
+
+```bash
+git clone https://github.com/KK9293717/smart-bookmark-app
+cd smart-bookmark-app
+npm install
+npm run dev
+```
+
+---
+
+## Final Result
+
+The app is fully deployed and working:
+
+https://smart-bookmark-app-eta-six.vercel.app
